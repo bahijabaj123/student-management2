@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     tools {
-        maven 'M2_HOME'     // correspond à ton installation Maven sur Jenkins
-        jdk 'JAVA_HOME'     // correspond à ton installation JDK sur Jenkins
+        maven 'M2_HOME'
+        jdk 'JAVA_HOME'
     }
 
     stages {
@@ -28,15 +28,13 @@ pipeline {
             steps {
                 echo '📦 Packaging du projet...'
                 sh 'mvn package -DskipTests'
-                echo '✅ Packaging terminé'
             }
         }
 
         stage('4️⃣ Package JAR') {
             steps {
-                echo '📦 Packaging final en JAR...'
+                echo '📦 Packaging en JAR...'
                 sh 'mvn clean package -DskipTests'
-                echo '✅ JAR prêt'
             }
         }
 
