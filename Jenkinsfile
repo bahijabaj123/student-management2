@@ -1,4 +1,3 @@
-jenkinsfile ekhdem
 
 pipeline {
     agent any
