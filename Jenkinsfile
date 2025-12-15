@@ -33,28 +33,6 @@ pipeline {
             }
         }
 
-         stage('4️⃣ Docker Build & Push') {
-            steps {
-                echo '🐳 Construction et push de l’image Docker...'
-                sh 'docker build -t student-management-bahija:1.0 .'
-                
-                withCredentials([usernamePassword(
-                    credentialsId: 'docker-hub-credentials',
-                    usernameVariable: 'DOCKER_USER',
-                    passwordVariable: 'DOCKER_PASS'
-                )]) {
-                    sh '''
-                        echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
-                        docker tag student-management-bahija:1.0 $DOCKER_USER/student-management-bahija:1.0
-                        docker push $DOCKER_USER/student-management-bahija:1.0
-                    '''
-                }
-                
-                sh 'docker images | grep student-management-bahija'
-            }
-        }
-        
-
         stage('4️⃣ SonarQube Analysis') {
             steps {
                 echo '🔍 Analyse de la qualité du code avec SonarQube...'
@@ -93,4 +71,3 @@ pipeline {
         }
     }
 }
-
