@@ -71,6 +71,28 @@ pipeline {
     }
 }
 
+        stage('Push Docker Image') {
+            steps {
+                script {
+                    // Se connecter à Docker Hub (prends tes identifiants Jenkins)
+                    withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', 
+                                                     usernameVariable: 'DOCKERHUB_USER', 
+                                                     passwordVariable: 'DOCKERHUB_PASS')]) {
+                        // Login Docker
+                        sh "echo $DOCKERHUB_PASS | docker login -u $DOCKERHUB_USER --password-stdin"
+                        
+                        // Tag si nécessaire
+                        sh "docker tag student-management:1.0 $DOCKERHUB_USER/student-management:1.0"
+
+                        // Push de l'image
+                        sh "docker push $DOCKERHUB_USER/student-management:1.0"
+                    }
+                }
+            }
+        }
+    
+
+
     }
 
     post {
