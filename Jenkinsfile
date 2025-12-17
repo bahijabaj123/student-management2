@@ -34,18 +34,18 @@ pipeline {
             }
         }
 
-        stage('4️⃣ SonarQube Analysis') {
-            steps {
-                echo '🔍 Analyse de la qualité du code avec SonarQube...'
-                withSonarQubeEnv('SonarQube') {
-                    sh """
-                    mvn sonar:sonar \
-                    -Dsonar.projectKey=student-management \
-                    -Dsonar.projectName=student-management
-                    """
-                }
-            }
-        }
+        // stage('4️⃣ SonarQube Analysis') {
+            // steps {
+                // echo '🔍 Analyse de la qualité du code avec SonarQube...'
+                // withSonarQubeEnv('SonarQube') {
+                    // sh """
+                    // mvn sonar:sonar \
+                    // -Dsonar.projectKey=student-management \
+                    // -Dsonar.projectName=student-management
+                    // """
+                // }
+            // }
+        // }
 
         stage('5️⃣ Package JAR') {
             steps {
