@@ -16,6 +16,7 @@ pipeline {
                 echo '✅ Clonage terminé'
             }
         }
+        
 
         stage('2️⃣ Build Project') {
             steps {
@@ -60,6 +61,16 @@ pipeline {
                 archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
             }
         }
+        stage('7️⃣ Build Docker Image') {
+    steps {
+        echo '🐳 Construction de l’image Docker student-management...'
+        sh '''
+        docker build -t student-management:1.0 .
+        '''
+        echo '✅ Image Docker créée avec succès'
+    }
+}
+
     }
 
     post {
