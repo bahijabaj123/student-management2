@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: spring-config
 data:
-  SPRING_DATASOURCE_URL: jdbc:mysql://mysql-service:3306/springdb
+  SPRING_DATASOURCE_URL: jdbc:mysql://mysql-service:3306/sp>
 ---
 apiVersion: v1
 kind: Secret
@@ -13,7 +13,7 @@ type: Opaque
 data:
   # REMPLACE avec tes valeurs base64 générées
   SPRING_DATASOURCE_USERNAME: c3ByaW5n  # "spring" encodé
-  SPRING_DATASOURCE_PASSWORD: c3ByaW5nMTIz  # "spring123" encodé
+  SPRING_DATASOURCE_PASSWORD: c3ByaW5nMTIz  # "spring123" e>
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -31,9 +31,9 @@ spec:
     spec:
       containers:
       - name: spring-app
-        # REMPLACE <DOCKERHUB_USER> par ton nom d'utilisateur Docker
+        # REMPLACE <DOCKERHUB_USER> par ton nom d'utilisate>
         image: bahija123/student-management:1.0
-        ports:
+         ports:
         - containerPort: 8080
         envFrom:
         - configMapRef:
@@ -53,4 +53,3 @@ spec:
       targetPort: 8080
       nodePort: 30080
   type: NodePort
-
